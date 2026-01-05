@@ -4,14 +4,14 @@ import threading
 import winsound
 import time
 
-# --- 1. CONFIGURACIÓN INICIAL ---
+
 app = Ursina()
 window.title = "RUBIK"
 window.borderless = False
 window.color = color.rgb(25, 25, 25) # Gris oscuro elegante
 window.fps_counter.enabled = False 
 
-# --- 2. SISTEMA DE SONIDO ---
+
 def play_sound(tipo):
     def _run():
         try:
@@ -21,13 +21,13 @@ def play_sound(tipo):
         except: pass
     threading.Thread(target=_run).start()
 
-# --- 3. ESCENARIO ---
+
 camera.position = (0, 0, -22)
 EditorCamera()
 AmbientLight(color=color.rgb(120, 120, 120))
 PointLight(parent=camera, position=(0,0,-5), color=color.white)
 
-# --- 4. INTERFAZ (UI) CORREGIDA ---
+
 # Panel lateral más ancho y ordenado
 panel = Entity(parent=camera.ui, model='quad', scale=(0.6, 1), position=(-0.70, 0), color=color.rgba(0, 0, 0, 0.9))
 
@@ -131,7 +131,7 @@ def ejecutar_giro_fisico(lado, sentido, velocidad):
     # Programar el final OBLIGATORIO
     invoke(finalizar_animacion, delay=velocidad + 0.05)
 
-# --- 7. EL CEREBRO (GESTOR DE COLAS) ---
+
 
 def agregar_accion(lado, sentido, velocidad, es_usuario):
     """Añade una orden a la cola de espera"""
@@ -217,5 +217,6 @@ def input(key):
     
     if key == 'space': mezclar()
     if key == 'enter': resolver_auto()
+
 
 app.run()
